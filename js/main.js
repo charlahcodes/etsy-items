@@ -7,21 +7,17 @@
   var prices = items.map( function (item) {
     return item.price;
   });
-  console.log(prices);
 
   // Add all of the prices together
   var sum = prices.reduce( function (prev, next) {
     return prev + next;
   });
-  console.log(sum);
 
   // Divide by total number of items
   var avg = sum / prices.length;
-  console.log(avg);
 
   // Convert it to 2 decimal places
   var converted = avg.toFixed(2);
-  console.log(converted);
 
   // Make it a string
   var str1 = 'The average price is $' + converted;
@@ -64,9 +60,34 @@ answer3.appendChild(textNode3);
 
 // 4. Display a list of all items who are made of wood.
 
-items.material.filter(function(item) {
-  console.log(item.material);
+
+// Nest IndexOf inside another array function
+
+// First, function that gets items.materials
+var str4 = '';
+items.filter(function(filterMaterials) {
+  var fltmats = filterMaterials.materials;
+  // now nest another function inside to get instances of wood
+  fltmats.forEach(function(eachWood) {
+    if (eachWood.indexOf("wood") != -1) {
+      str4 = filterMaterials.title;
+      console.log(str4);
+    };
+  });
 });
+
+var answer4 = document.querySelector('#answer4');
+var textNode4 = document.createTextNode(str4);
+answer4.appendChild(textNode4);
+
+
+
+
+
+
+
+
+
 
 
 
