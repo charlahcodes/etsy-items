@@ -1,3 +1,3 @@
 #Etsy Items project
 
-##Objects, arrays, loops, SASS
+###Objects, arrays, loops, SASS
