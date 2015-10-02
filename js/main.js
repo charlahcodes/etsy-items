@@ -60,36 +60,76 @@ answer3.appendChild(textNode3);
 
 // 4. Display a list of all items who are made of wood.
 
-
-// Nest IndexOf inside another array function
-
 // First, function that gets items.materials
-var str4 = '';
-items.filter(function(filterMaterials) {
+var woodArray = [];
+var findWood = items.forEach(function(filterMaterials) {
   var fltmats = filterMaterials.materials;
+  if (filterMaterials.materials != -1) {
   // now nest another function inside to get instances of wood
-  fltmats.forEach(function(eachWood) {
-    if (eachWood.indexOf("wood") != -1) {
-      str4 = filterMaterials.title;
-      console.log(str4);
-    };
+    fltmats.forEach(function(eachWood) {
+      if (eachWood.indexOf("wood") != -1) {
+         woodArray.push(filterMaterials.title);
+      };
+    });
+  };
+});
+
+// instead of this, try forEach on array, appendchild within it
+var wood1 = woodArray[0];
+var wood2 = woodArray[1];
+var wood3 = woodArray[2];
+var wood4 = woodArray[3];
+var wood5 = woodArray[4];
+
+var answer4a = document.querySelector('#answer4a');
+var answer4b = document.querySelector('#answer4b');
+var answer4c = document.querySelector('#answer4c');
+var answer4d = document.querySelector('#answer4d');
+var answer4e = document.querySelector('#answer4e');
+
+var textNode4 = document.createTextNode(wood1);
+var textNode5 = document.createTextNode(wood2);
+var textNode6 = document.createTextNode(wood3);
+var textNode7 = document.createTextNode(wood4);
+var textNode8 = document.createTextNode(wood5);
+
+answer4a.appendChild(textNode4);
+answer4b.appendChild(textNode5);
+answer4c.appendChild(textNode6);
+answer4d.appendChild(textNode7);
+answer4e.appendChild(textNode8);
+
+// 5. Which items are made of eight or more materials? Display the name, number of items and the items it is made of.
+
+var eightArray = [];
+var findEight = items.filter(function(item) {
+  return item.materials.length > 8;
+});
+
+findEight.forEach(function(findEight) {
+  eightArray.push(findEight.title);
+  eightArray.push(findEight.materials.length);
+  var eightMaterials = findEight.materials;
+  eightMaterials.forEach(function(eachMat) {
+    eightArray.push(eachMat);
   });
 });
 
-var answer4 = document.querySelector('#answer4');
-var textNode4 = document.createTextNode(str4);
-answer4.appendChild(textNode4);
+var answer5 = document.querySelector('#answer5');
+var textNode5 = document.createTextNode(eightArray); 
+answer5.appendChild(textNode5);
 
+// 6. How many items were made by their sellers?
 
+var selfMade = items.filter(function(item) {
+  return item.who_made === "i_did";
+});
 
+var numberSelfMade = selfMade.length + " were made by their sellers.";
 
-
-
-
-
-
-
-
+var answer6 = document.querySelector('#answer6');
+var textNode6 = document.createTextNode(numberSelfMade); 
+answer6.appendChild(textNode6);
 
 
 
