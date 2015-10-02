@@ -40,7 +40,7 @@ items.filter(function(filter14to18) {
     str2 += filter14to18.title;
   };
 });
-
+// var aChild = element.appendChild(aChild);
 var answer2 = document.querySelector('#answer2');
 var textNode2 = document.createTextNode(str2);
 answer2.appendChild(textNode2);
@@ -50,7 +50,7 @@ answer2.appendChild(textNode2);
 var str3 = "";
 items.filter(function(filterCurrency) {
   if (filterCurrency.currency_code === "GBP" ) {
-    str3 += filterCurrency.title + ' costs £' + filterCurrency.price + '.';
+    str3 += filterCurrency.title + ' costs \xa3' + filterCurrency.price + '.';
   };
 });
 
@@ -74,30 +74,19 @@ var findWood = items.forEach(function(filterMaterials) {
   };
 });
 
-// instead of this, try forEach on array, appendchild within it
-var wood1 = woodArray[0];
-var wood2 = woodArray[1];
-var wood3 = woodArray[2];
-var wood4 = woodArray[3];
-var wood5 = woodArray[4];
+var answer4 = document.querySelector('#answer4');
+woodArray.forEach(function(eachWood) {
+ var textNode4 = document.createElement('div');
+ textNode4.textContent = eachWood;
+ answer4.appendChild(textNode4);
+});
 
-var answer4a = document.querySelector('#answer4a');
-var answer4b = document.querySelector('#answer4b');
-var answer4c = document.querySelector('#answer4c');
-var answer4d = document.querySelector('#answer4d');
-var answer4e = document.querySelector('#answer4e');
-
-var textNode4 = document.createTextNode(wood1);
-var textNode5 = document.createTextNode(wood2);
-var textNode6 = document.createTextNode(wood3);
-var textNode7 = document.createTextNode(wood4);
-var textNode8 = document.createTextNode(wood5);
-
-answer4a.appendChild(textNode4);
-answer4b.appendChild(textNode5);
-answer4c.appendChild(textNode6);
-answer4d.appendChild(textNode7);
-answer4e.appendChild(textNode8);
+// var answer4 = document.querySelector('#answer4');
+// woodArray.forEach(function(eachWood) {
+//   var textNode4 = document.createTextNode(eachWood);
+//   // append break tag here
+//   answer4.appendChild(textNode4);
+// });
 
 // 5. Which items are made of eight or more materials? Display the name, number of items and the items it is made of.
 
