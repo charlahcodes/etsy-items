@@ -34,16 +34,20 @@
 
 // 2. Show me how to get an array of items that cost between $14.00 and $18.00 USD.
 
-var str2 = "";
+var str2 = [];
 items.filter(function(filter14to18) {
   if ((filter14to18.price > 14) && (filter14to18.price < 18)) {
-    str2 += filter14to18.title;
+    str2.push(filter14to18.title);
   };
 });
-// var aChild = element.appendChild(aChild);
+
 var answer2 = document.querySelector('#answer2');
-var textNode2 = document.createTextNode(str2);
-answer2.appendChild(textNode2);
+str2.forEach(function(eachTitle) {
+ var textNode2 = document.createElement('p');
+ textNode2.textContent = eachTitle;
+ answer2.appendChild(textNode2);
+});
+
 
 // // 3. Which item has a "GBP" currency code? Display its name and price.
 
@@ -58,55 +62,44 @@ var answer3 = document.querySelector('#answer3');
 var textNode3 = document.createTextNode(str3);
 answer3.appendChild(textNode3);
 
+
 // 4. Display a list of all items who are made of wood.
 
-// First, function that gets items.materials
 var woodArray = [];
+
 var findWood = items.forEach(function(filterMaterials) {
   var fltmats = filterMaterials.materials;
-  if (filterMaterials.materials != -1) {
-  // now nest another function inside to get instances of wood
-    fltmats.forEach(function(eachWood) {
-      if (eachWood.indexOf("wood") != -1) {
+  fltmats.forEach(function(eachWood) {
+     if (eachWood === "wood") {
          woodArray.push(filterMaterials.title);
       };
-    });
-  };
+  });
 });
 
 var answer4 = document.querySelector('#answer4');
 woodArray.forEach(function(eachWood) {
- var textNode4 = document.createElement('div');
+ var textNode4 = document.createElement('p');
  textNode4.textContent = eachWood;
  answer4.appendChild(textNode4);
 });
 
-// var answer4 = document.querySelector('#answer4');
-// woodArray.forEach(function(eachWood) {
-//   var textNode4 = document.createTextNode(eachWood);
-//   // append break tag here
-//   answer4.appendChild(textNode4);
-// });
 
 // 5. Which items are made of eight or more materials? Display the name, number of items and the items it is made of.
 
 var eightArray = [];
 var findEight = items.filter(function(item) {
-  return item.materials.length > 8;
-});
-
-findEight.forEach(function(findEight) {
-  eightArray.push(findEight.title);
-  eightArray.push(findEight.materials.length);
-  var eightMaterials = findEight.materials;
-  eightMaterials.forEach(function(eachMat) {
-    eightArray.push(eachMat);
-  });
+  return item.materials.length > 7;
 });
 
 var answer5 = document.querySelector('#answer5');
-var textNode5 = document.createTextNode(eightArray); 
-answer5.appendChild(textNode5);
+
+findEight.forEach(function(item) {
+  var textNode5 = document.createElement('div');
+  var materialsList = item.materials.join("\n");
+  textNode5.innerHTML = item.title + ' has ' + item.materials.length + ' materials:' + '<p>' + materialsList + '</p>';
+  answer5.appendChild(textNode5);  
+});
+
 
 // 6. How many items were made by their sellers?
 
@@ -119,9 +112,6 @@ var numberSelfMade = selfMade.length + " were made by their sellers.";
 var answer6 = document.querySelector('#answer6');
 var textNode6 = document.createTextNode(numberSelfMade); 
 answer6.appendChild(textNode6);
-
-
-
 
 
 })();
